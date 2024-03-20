@@ -1,5 +1,11 @@
 import streamlit as st
 
+# Set favicon URL
+favicon_url = "https://cdn0.iconfinder.com/data/icons/food-4-13/48/181-512.png" 
+
+# Set page config with favicon
+st.set_page_config(page_title="Kilo Timer", page_icon=favicon_url)
+
 def calculate_cook_time(cook_time_per_kilo, actual_kilo):
     total_cook_time = cook_time_per_kilo * actual_kilo
     hours = total_cook_time // 60
