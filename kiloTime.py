@@ -1,22 +1,17 @@
 import streamlit as st
 
-def calculate_time_per_kilo(total_time, total_distance):
-    time_per_kilo = total_time / total_distance
-    return time_per_kilo
+def calculate_cook_time(cook_time_per_kilo, actual_kilo):
+    return cook_time_per_kilo * actual_kilo
 
 def main():
-    st.title("Time per Kilometer Calculator")
-    st.write("This calculator helps you find the average time per kilometer based on the total time and distance.")
+    st.title('Meat Cook Time Calculator')
+    
+    cook_time_per_kilo = st.number_input('Cook Time per Kilo (in minutes)', min_value=1)
+    actual_kilo = st.number_input('Actual Weight of Meat (in kilos)', min_value=0.1)
 
-    total_time = st.number_input("Total Time (in minutes)", min_value=0.0, step=1.0, format="%.2f")
-    total_distance = st.number_input("Total Distance (in kilometers)", min_value=0.0, step=0.1, format="%.2f")
+    if st.button('Calculate Cook Time'):
+        cook_time = calculate_cook_time(cook_time_per_kilo, actual_kilo)
+        st.success(f'Cook Time: {cook_time} minutes')
 
-    if st.button("Calculate"):
-        if total_distance == 0:
-            st.error("Total distance cannot be zero.")
-        else:
-            time_per_kilo = calculate_time_per_kilo(total_time, total_distance)
-            st.success(f"Average Time per Kilometer: {time_per_kilo:.2f} minutes")
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
