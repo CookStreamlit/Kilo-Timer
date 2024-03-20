@@ -33,10 +33,9 @@ def main():
     st.title('Meat Cook Time Calculator')
     
     cook_time_per_kilo = st.number_input('Cook Time per Kilo (in minutes)', min_value=1)
-    actual_kilo = st.text_input('Actual Weight of Meat (in kilos)', min_value=0.1, type="number")
+    actual_kilo = st.number_input('Actual Weight of Meat (in kilos)', min_value=0.1, format="%.1f", on_change=True)
     
-    if st.button('Calculate Cook Time') or (actual_kilo and st.session_state.triggered_by == actual_kilo):
-        actual_kilo = float(actual_kilo)
+    if st.button('Calculate Cook Time') or st.session_state.actual_kilo is not None:
         hours, minutes = calculate_cook_time(cook_time_per_kilo, actual_kilo)
         if hours > 0:
             st.success(f'Cook Time: {int(hours)} hours and {int(minutes)} minutes')
