@@ -31,6 +31,8 @@ def main():
         else:
             st.success(f'Cook Time: {int(minutes)} minutes')
 
+     st.markdown("---")
+
     temp_unit = st.radio("Select temperature unit:", ("Fahrenheit", "Celsius"))
 
     if temp_unit == "Fahrenheit":
